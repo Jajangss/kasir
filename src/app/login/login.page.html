@@ -1,0 +1,30 @@
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col><br />
+        <h1 class="warnaHitam">Kasir</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <form [formGroup]="FormLogin" (ngSubmit)="login()">
+    <ion-item color="#ffffff">
+      <div color="light"  slot="start">
+        <ion-icon color="light" slot="icon-only" name="person" ></ion-icon>
+    </div>
+      <ion-input color="light" type="text" name="email" placeholder="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item color="#ffffff">
+      <div color="light"  slot="start">
+        <ion-icon color="light" slot="icon-only" name="lock-closed"></ion-icon>
+    </div>
+      <ion-input color="light" type="text" name="password" placeholder="Password" formControlName="password" *ngIf="showPasswordText"></ion-input>
+      <ion-input color="light" type="password" name="password" placeholder="Password"  formControlName="password" *ngIf="!showPasswordText"></ion-input>
+      <ion-icon color="light" slot="icon-only" (click)="showPasswordText = !showPasswordText" *ngIf="showPasswordText" name="eye"  slot="end" class="ion-align-self-center"></ion-icon>
+      <ion-icon color="light" slot="icon-only" (click)="showPasswordText = !showPasswordText" *ngIf="!showPasswordText" name="eye-off" slot="end" class="ion-align-self-center"></ion-icon>
+    </ion-item>
+    <br>
+    <ion-button type="submit" expand="block" color="primary" [disabled]="!FormLogin.valid">Login</ion-button>
+  </form>
+  <p class="ion-text-center warnaHitam" id="warnaHitam">Don't have a account?</p>
+  <ion-button expand="block" color="danger" (click)="registerModal()" >Register</ion-button>
+</ion-content>

@@ -1,0 +1,76 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Kasir
+    </ion-title>
+      <strong slot="end" class="ion-margin-end">{{Username}}</strong>
+      <ion-button slot="end" class="ion-margin-end" color="danger" (click)="logout()" >Logout</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>
+          Input Produk
+        </ion-label>
+      </ion-list-header>
+    </ion-list>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Produk</ion-label>
+          <ion-select placeholder="Select One" [(ngModel)]="name">
+            <ion-select-option  *ngFor="let i of item" [value]="i">{{i.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+        <ion-label position="stacked">Jumlah Barang</ion-label>
+        <ion-input placeholder="0" type="number" [(ngModel)]="total"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button (click)="onSave()">Tambah</ion-button>
+      <br>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Keranjang</ion-label>
+      </ion-list-header>
+      <ng-container *ngIf="sum.length > 0">
+        <ion-item lines="full" *ngFor="let i of sum">
+          <ion-label>{{i.name}}</ion-label>
+          <ion-label>{{i.qty}}</ion-label>
+          <ion-label>{{i.total}}</ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Bayar</ion-label>
+        <ion-label>{{totalPrice}}</ion-label>
+      </ion-list-header>
+    </ion-list>
+
+    <ion-card-content>
+      <ion-label>Total</ion-label>
+      <ion-item>
+        <ion-label position="stacked">Uang yang dibayarkan</ion-label>
+        <ion-input aria-placeholder="0" type="number" [(ngModel)]="bayar"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button (click)="inputData()">Bayar</ion-button>
+      <br>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
